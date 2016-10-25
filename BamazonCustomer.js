@@ -45,9 +45,23 @@ var start = function() {
 				connection.query(query, [answer.numUnits, answer.idChoice], function(err, res) {
 				})
 				console.log('Total Cost of Purchase: $' + res[0].Price * answer.numUnits)
+				returnMenu();
 			}		
 		})
 		});
+}
+
+var returnMenu = function() {
+	inquirer.prompt({
+		name: 'menuReturn',
+		message: 'What would like to make additional purchases?',
+		type: 'list',
+		choices: ['Yes', 'No']
+	}).then(function(answer) {
+		if (answer.menuReturn == "Yes") {
+			start();
+		}
+	});
 }
 
 
