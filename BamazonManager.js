@@ -40,7 +40,7 @@ var start = function() {
 var prodforSale = function() {
 	connection.query('SELECT * FROM Products', function(err, res) {
 		for (var i = 0; i < res.length; i++) {
-			console.log('ID: ' + res[i].ItemID + ' || Product: ' + res[i].ProductName + ' || Dept: ' + res[i].DepartmentName + ' || Price: $' + res[i].Price + ' || Quantity: $' + res[i].StockQuantity + '\n');
+			console.log('ID: ' + res[i].ItemID + ' || Product: ' + res[i].ProductName + ' || Dept: ' + res[i].DepartmentName + ' || Price: $' + res[i].Price + ' || Quantity: ' + res[i].StockQuantity + '\n');
 		}
 		returnMenu();
 	});
