@@ -19,7 +19,7 @@ connection.query('SELECT * FROM Products', function(err, res) {
 		console.log('ID: ' + res[i].ItemID + ' || Product: ' + res[i].ProductName + ' || Price: $' + res[i].Price + '\n');
 	}
 	console.log('-----------------------------------------------------------');
-	console.log('WELCOME TO BAMAZON! THE PLACE TO FIND THE BEST PRODUCTS');
+	console.log('WELCOME TO BAMAZON! THE PLACE TO FIND THE BEST PRODUCTS!');
 	console.log('-----------------------------------------------------------');
 	start();
 });
