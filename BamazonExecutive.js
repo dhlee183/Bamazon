@@ -1,4 +1,5 @@
 var inquirer = require('inquirer');
+
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
@@ -38,9 +39,10 @@ var viewSalesDept = function() {
 	+ ' ON dept.DepartmentName=prod.DepartmentName'
 	+ ' GROUP BY dept.DepartmentID';
 	connection.query(query, function(err, res) {
-	
-			console.log(res);
-
+		for (var i = 0; i < res.length; i++) {
+    		console.log(res[i].DepartmentID, res[i].DepartmentName, res[i].TotalOverHeadCosts, res[i].ProductSales, res[i].TotalProfit);
+		}	
+		returnMenu();
 	});
 }
 
