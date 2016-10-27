@@ -2,7 +2,7 @@ var Table = require('cli-table');
  
 var table = new Table({
     head: ['DeptID', 'DeptName', 'OHCosts', 'ProdSales', 'TotProf']
-  , colWidths: [5, 17, 12, 12, 12]
+  , colWidths: [8, 17, 12, 12, 12]
 });
 
 var inquirer = require('inquirer');
