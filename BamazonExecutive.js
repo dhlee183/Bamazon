@@ -1,3 +1,10 @@
+var Table = require('cli-table');
+ 
+var table = new Table({
+    head: ['DeptID', 'DeptName', 'OHCosts', 'ProdSales', 'TotProf']
+  , colWidths: [5, 17, 12, 12, 12]
+});
+
 var inquirer = require('inquirer');
 
 var mysql = require('mysql');
@@ -40,8 +47,9 @@ var viewSalesDept = function() {
 	+ ' GROUP BY dept.DepartmentID';
 	connection.query(query, function(err, res) {
 		for (var i = 0; i < res.length; i++) {
-    		console.log(res[i].DepartmentID, res[i].DepartmentName, res[i].TotalOverHeadCosts, res[i].ProductSales, res[i].TotalProfit);
-		}	
+    		table.push([res[i].DepartmentID, res[i].DepartmentName, res[i].TotalOverHeadCosts, res[i].ProductSales, res[i].TotalProfit]);
+		}
+		console.log(table.toString());	
 		returnMenu();
 	});
 }
