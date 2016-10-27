@@ -48,30 +48,26 @@ var viewSalesDept = function() {
 
 var createDept = function() {
 	inquirer.prompt([{
-		name: 'prodName',
-		message: 'Enter the name of the product you would like to add',
+		name: 'deptID',
+		message: 'Enter the department ID you would like to use',
 		type: 'input'
 	}, {
 		name: 'deptName',
 		message: 'Enter the department name',
 		type: 'input'
 	}, {
-		name: 'prodPrice',
-		message: 'Enter the price of the product',
-		type: 'input'
-	}, {
-		name: 'prodQuant',
-		message: 'Enter the quantity to add',
+		name: 'overHead',
+		message: 'Enter the overhead cost',
 		type: 'input'
 	}	
 	]).then(function(answer) {
-		connection.query('INSERT INTO Products SET ?', {
-			ProductName: answer.prodName,
+		connection.query('INSERT INTO Departments SET ?', {
+			DepartmentID: answer.deptID,
 			DepartmentName: answer.deptName,
-			Price: answer.prodPrice,
-			StockQuantity: answer.prodQuant
+			OverHeadCosts: answer.overHead,
+			TotalSales: 0
 		}, function(err, res) {
-			console.log(answer.prodName + ' Has been added to the inventory');
+			console.log(answer.deptName + ' Has been added to the system');
 			returnMenu();
 		});
 		
