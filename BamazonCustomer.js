@@ -41,13 +41,19 @@ var start = function() {
 				console.log('Please choose again');
 				start();
 			} else {
-				var query = 'UPDATE Products SET StockQuantity = StockQuantity-? WHERE ItemID=?'
+				var query = 'UPDATE Products SET StockQuantity = StockQuantity-? WHERE ItemID=?';
 				connection.query(query, [answer.numUnits, answer.idChoice], function(err, res) {
-				})
-				console.log('Total Cost of Purchase: $' + res[0].Price * answer.numUnits)
+				});
+				var revenue = res[0].Price * answer.numUnits;
+				console.log('Total Cost of Purchase: $' + revenue);
+
+				var query2 = "UPDATE Departments SET TotalSales=TotalSales+? WHERE DepartmentName=?"
+				connection.query(query2, [revenue, res[0].DepartmentName], function(err, res) {
+				});
+
 				returnMenu();
 			}		
-		})
+		});
 		});
 }
 
