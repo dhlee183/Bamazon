@@ -32,7 +32,11 @@ var start = function() {
 }
 
 var viewSalesDept = function() {
-	var query = 'SELECT dept.DepartmentID,dept.DepartmentName,dept.OverHeadCosts*prod.StockQuantity AS TotalOverHeadCosts,dept.TotalSales AS ProductSales,dept.TotalSales - (dept.OverHeadCosts*prod.StockQuantity) AS TotalProfit FROM Departments AS dept JOIN Products AS prod ON dept.DepartmentName=prod.DepartmentName';
+	var query = 'SELECT dept.DepartmentID,dept.DepartmentName,SUM(dept.OverHeadCosts*prod.StockQuantity) AS TotalOverHeadCosts,SUM(dept.TotalSales) AS ProductSales,SUM(dept.TotalSales - (dept.OverHeadCosts*prod.StockQuantity)) AS TotalProfit'
+	+ ' FROM Departments AS dept'
+	+ ' JOIN Products AS prod'
+	+ ' ON dept.DepartmentName=prod.DepartmentName'
+	+ ' GROUP BY dept.DepartmentID';
 	connection.query(query, function(err, res) {
 	
 			console.log(res);
